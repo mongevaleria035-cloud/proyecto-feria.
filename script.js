@@ -29,7 +29,7 @@ const imagenes = [
     },
 
     {
-        src: "Nivel real1,. JPG.jpg",
+        src: "realnive1.jpg",
         respuesta: "real",
         nivel: 1
     },
