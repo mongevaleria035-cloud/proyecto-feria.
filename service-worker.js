@@ -1,57 +1,53 @@
-const CACHE_NAME = "real-o-ia-v1";
+const CACHE_NAME = "real-o-ia-v2";
 
 const urlsToCache = [
 
-"/",
-"index.html",
-"style.css",
-"script.js",
-"manifest.json",
+    "/",
+    "index.html",
+    "style.css",
+    "script.js",
+    "manifest.json",
 
-"logo.png",
+    "Logo-pagina.png",
 
-"img/nivel1_1.jpg",
-"img/nivel1_2.jpg",
-"img/nivel1_3.jpg",
-"img/nivel1_4.jpg",
-"img/nivel1_5.jpg",
+    "Nivel IA 1.jpg.jpg",
+    "IA nivel 1.webp.webp",
+    "IA nivel 1,.webp.webp",
 
-"img/nivel2_1.jpg",
-"img/nivel2_2.jpg",
-"img/nivel2_3.jpg",
-"img/nivel2_4.jpg",
-"img/nivel2_5.jpg"
+    "De verdad nivel1. JPG.jpg",
+    "Nivel real1,. JPG.jpg",
+
+    "realnivel2. JPG.jpg",
+    "realnivel2,. JPG.jpg",
+    "realnivel2,,. JPG.jpg",
+
+    "IAnivel2.PNG.png",
+    "Nivel 2,.. PNG.png"
 
 ];
 
 self.addEventListener("install", event => {
 
-event.waitUntil(
+    event.waitUntil(
 
-caches.open(CACHE_NAME)
+        caches.open(CACHE_NAME)
+            .then(cache => {
+                return cache.addAll(urlsToCache);
+            })
 
-.then(cache => {
-
-return cache.addAll(urlsToCache);
-
-})
-
-);
+    );
 
 });
 
 self.addEventListener("fetch", event => {
 
-event.respondWith(
+    event.respondWith(
 
-caches.match(event.request)
+        caches.match(event.request)
+            .then(response => {
+                return response || fetch(event.request);
+            })
 
-.then(response => {
-
-return response || fetch(event.request);
-
-})
-
-);
+    );
 
 });
