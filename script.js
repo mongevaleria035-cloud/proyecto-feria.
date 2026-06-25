@@ -5,7 +5,7 @@ let aciertos = 0;
 const imagenes = [
 
     {
-        src: "Nivel IA 1.jpg.jpg",
+        src: "nivel1.jpg",
         respuesta: "ia",
         nivel: 1
     },
