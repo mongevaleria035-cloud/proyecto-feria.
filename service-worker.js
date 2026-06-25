@@ -8,21 +8,19 @@ const urlsToCache = [
     "script.js",
     "manifest.json",
 
-    "Logo-pagina.png",
+   "Logo-pagina.png",
 
-    "Nivel IA 1.jpg.jpg",
-    "IA nivel 1.webp.webp",
-    "IA nivel 1,.webp.webp",
+"nivel1.jpg",
+"IA nivel 1.webp.webp",
+"IA nivel 1,.webp.webp",
+"real1.jpg",
+"realnivel1.jpg",
 
-    "De verdad nivel1. JPG.jpg",
-    "Nivel real1,. JPG.jpg",
-
-    "realnivel2. JPG.jpg",
-    "realnivel2,. JPG.jpg",
-    "realnivel2,,. JPG.jpg",
-
-    "IAnivel2.PNG.png",
-    "Nivel 2,.. PNG.png"
+"nivel2.jpg",
+"realnivel2.jpg",
+"verdadnivel2.jpg",
+"ainivel2.png",
+"ianivel2.png"
 
 ];
 
