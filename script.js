@@ -53,7 +53,7 @@ const imagenes = [
     },
 
     {
-        src: "ainivel2.png",
+        src: "ainivel2.webp.webp",
         respuesta: "ia",
         nivel: 2
     },
