@@ -4,6 +4,10 @@ let aciertos = 0;
 
 const imagenes = [
 
+    // ======================
+    // NIVEL 1 - FÁCIL
+    // ======================
+
     {
         src: "nivel1.jpg",
         respuesta: "ia",
@@ -34,6 +38,10 @@ const imagenes = [
         nivel: 1
     },
 
+    // ======================
+    // NIVEL 2 - DIFÍCIL
+    // ======================
+
     {
         src: "nivel2.jpg",
         respuesta: "real",
@@ -53,7 +61,7 @@ const imagenes = [
     },
 
     {
-        src: "ainivel2.webp.webp",
+        src: "ainivel2.png",
         respuesta: "ia",
         nivel: 2
     },
