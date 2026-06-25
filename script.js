@@ -1,4 +1,3 @@
-```javascript
 let jugador = "";
 let indice = 0;
 let aciertos = 0;
@@ -171,4 +170,3 @@ function reiniciar() {
 
     location.reload();
 }
-```
