@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>¿Real o IA?</title>
+
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="manifest.json">
+
+<meta name="theme-color" content="#00d4ff">
+
+</head>
+
+<body>
+
+<!-- INICIO -->
+
+<section id="inicio">
+
+<img src="logo.png" class="logo">
+
+<h1>¿REAL O IA?</h1>
+
+<h2>Desafío Interactivo</h2>
+
+<p class="instituto">
+ISFT N°244
+</p>
+
+<p>
+Tecnicatura Superior en Ciencias de Datos e IA
+</p>
+
+<p>
+1° Año
+</p>
+
+<div class="integrantes">
+
+Angelina Monge<br>
+Laura Cubilla<br>
+Valeria Monge
+
+</div>
+
+<input
+type="text"
+id="nombre"
+placeholder="Ingresá tu nombre">
+
+<button onclick="iniciarJuego()">
+COMENZAR
+</button>
+
+</section>
+
+<!-- JUEGO -->
+
+<section id="juego" style="display:none;">
+
+<h2 id="nivelActual"></h2>
+
+<p id="mensajeJugador"></p>
+
+<div class="contenedorBarra">
+<div id="barra"></div>
+</div>
+
+<p id="contador"></p>
+
+<img
+id="imagenJuego"
+class="imagenJuego">
+
+<div class="botones">
+
+<button onclick="responder('real')">
+📸 REAL
+</button>
+
+<button onclick="responder('ia')">
+🤖 IA
+</button>
+
+</div>
+
+<h2 id="feedback"></h2>
+
+</section>
+
+<!-- TRANSICION -->
+
+<section id="nivel2" style="display:none;">
+
+<h1>🚀 NIVEL 2</h1>
+
+<p>
+Las imágenes ahora serán más difíciles.
+</p>
+
+<button onclick="comenzarNivel2()">
+CONTINUAR
+</button>
+
+</section>
+
+<!-- RESULTADOS -->
+
+<section id="resultado" style="display:none;">
+
+<h1>🏆 RESULTADO FINAL</h1>
+
+<h2 id="nombreFinal"></h2>
+
+<div id="estadisticas"></div>
+
+<div id="conclusion"></div>
+
+<div id="certificado"></div>
+
+<button onclick="reiniciar()">
+JUGAR OTRA VEZ
+</button>
+
+</section>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>

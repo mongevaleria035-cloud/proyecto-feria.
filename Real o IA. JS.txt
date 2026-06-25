@@ -1,0 +1,337 @@
+// ======================
+// DATOS DEL JUEGO
+// ======================
+
+let jugador = "";
+let indice = 0;
+let aciertos = 0;
+let aciertosFacil = 0;
+let aciertosDificil = 0;
+
+const imagenes = [
+
+    // NIVEL 1
+
+    {
+        src: "img/nivel1_1.jpg",
+        respuesta: "ia",
+        nivel: 1
+    },
+
+    {
+        src: "img/nivel1_2.jpg",
+        respuesta: "ia",
+        nivel: 1
+    },
+
+    {
+        src: "img/nivel1_3.jpg",
+        respuesta: "ia",
+        nivel: 1
+    },
+
+    {
+        src: "img/nivel1_4.jpg",
+        respuesta: "real",
+        nivel: 1
+    },
+
+    {
+        src: "img/nivel1_5.jpg",
+        respuesta: "real",
+        nivel: 1
+    },
+
+    // NIVEL 2
+
+    {
+        src: "img/nivel2_1.jpg",
+        respuesta: "real",
+        nivel: 2
+    },
+
+    {
+        src: "img/nivel2_2.jpg",
+        respuesta: "real",
+        nivel: 2
+    },
+
+    {
+        src: "img/nivel2_3.jpg",
+        respuesta: "real",
+        nivel: 2
+    },
+
+    {
+        src: "img/nivel2_4.jpg",
+        respuesta: "ia",
+        nivel: 2
+    },
+
+    {
+        src: "img/nivel2_5.jpg",
+        respuesta: "ia",
+        nivel: 2
+    }
+
+];
+
+// ======================
+// INICIO
+// ======================
+
+function iniciarJuego() {
+
+    jugador = document.getElementById("nombre").value.trim();
+
+    if (jugador === "") {
+        alert("Ingresá tu nombre");
+        return;
+    }
+
+    document.getElementById("inicio").style.display = "none";
+    document.getElementById("juego").style.display = "block";
+
+    cargarImagen();
+}
+
+// ======================
+// CARGAR IMAGEN
+// ======================
+
+function cargarImagen() {
+
+    const imagen = imagenes[indice];
+
+    document.getElementById("imagenJuego").src = imagen.src;
+
+    document.getElementById("contador").innerHTML =
+        `Imagen ${indice + 1} de 10`;
+
+    document.getElementById("nivelActual").innerHTML =
+        imagen.nivel === 1
+            ? "🟢 Nivel 1 - Fácil"
+            : "🔴 Nivel 2 - Difícil";
+
+    document.getElementById("mensajeJugador").innerHTML =
+        `¡Vamos ${jugador}!`;
+
+    actualizarBarra();
+}
+
+// ======================
+// RESPUESTA
+// ======================
+
+function responder(opcion) {
+
+    const imagen = imagenes[indice];
+
+    let correcto = opcion === imagen.respuesta;
+
+    if (correcto) {
+
+        aciertos++;
+
+        if (imagen.nivel === 1) {
+            aciertosFacil++;
+        } else {
+            aciertosDificil++;
+        }
+
+        mostrarFeedback(
+            `✅ ¡Correcto ${jugador}!`,
+            "#00ff99"
+        );
+
+    } else {
+
+        mostrarFeedback(
+            `❌ Casi ${jugador}`,
+            "#ff4d6d"
+        );
+    }
+
+    indice++;
+
+    // Cambio de nivel
+
+    if (indice === 5) {
+
+        setTimeout(() => {
+
+            document.getElementById("juego").style.display = "none";
+            document.getElementById("nivel2").style.display = "block";
+
+        }, 1200);
+
+        return;
+    }
+
+    if (indice >= imagenes.length) {
+
+        setTimeout(() => {
+
+            mostrarResultados();
+
+        }, 1200);
+
+        return;
+    }
+
+    setTimeout(() => {
+
+        cargarImagen();
+
+    }, 1200);
+}
+
+// ======================
+// CONTINUAR NIVEL 2
+// ======================
+
+function comenzarNivel2() {
+
+    document.getElementById("nivel2").style.display = "none";
+
+    document.getElementById("juego").style.display = "block";
+
+    cargarImagen();
+}
+
+// ======================
+// FEEDBACK
+// ======================
+
+function mostrarFeedback(texto, color) {
+
+    const feedback =
+        document.getElementById("feedback");
+
+    feedback.innerHTML = texto;
+
+    feedback.style.color = color;
+
+    feedback.style.opacity = "1";
+
+    setTimeout(() => {
+
+        feedback.style.opacity = "0";
+
+    }, 1000);
+}
+
+// ======================
+// BARRA PROGRESO
+// ======================
+
+function actualizarBarra() {
+
+    let porcentaje =
+        ((indice + 1) / 10) * 100;
+
+    document.getElementById("barra")
+        .style.width = porcentaje + "%";
+}
+
+// ======================
+// RESULTADOS
+// ======================
+
+function mostrarResultados() {
+
+    document.getElementById("juego").style.display = "none";
+
+    document.getElementById("resultado")
+        .style.display = "block";
+
+    let porcentaje =
+        Math.round((aciertos / 10) * 100);
+
+    document.getElementById("nombreFinal")
+        .innerHTML = jugador;
+
+    document.getElementById("estadisticas")
+        .innerHTML = `
+
+        <p>✅ Aciertos Totales: <b>${aciertos}/10</b></p>
+
+        <p>🟢 Nivel Fácil: <b>${aciertosFacil}/5</b></p>
+
+        <p>🔴 Nivel Difícil: <b>${aciertosDificil}/5</b></p>
+
+        <p>📊 Precisión: <b>${porcentaje}%</b></p>
+
+    `;
+
+    let conclusion = "";
+
+    if (porcentaje >= 90) {
+
+        conclusion =
+            "🏆 Experta en detección de imágenes creadas con IA.";
+
+    } else if (porcentaje >= 70) {
+
+        conclusion =
+            "👏 Muy buena observadora. Detectás muchos detalles.";
+
+    } else if (porcentaje >= 50) {
+
+        conclusion =
+            "🤔 La IA te puso a prueba.";
+
+    } else {
+
+        conclusion =
+            "💡 Las imágenes creadas por IA son cada vez más difíciles de detectar.";
+    }
+
+    document.getElementById("conclusion")
+        .innerHTML = conclusion;
+
+    document.getElementById("certificado")
+        .innerHTML = `
+
+        <h2>🏆 CERTIFICADO</h2>
+
+        <h3>${jugador}</h3>
+
+        <p>Obtuvo una precisión de</p>
+
+        <h1>${porcentaje}%</h1>
+
+        <p>en el desafío</p>
+
+        <h2>¿REAL O IA?</h2>
+
+        <p>ISFT N°244</p>
+
+    `;
+}
+
+// ======================
+// REINICIAR
+// ======================
+
+function reiniciar() {
+
+    location.reload();
+
+}
+
+// ======================
+// PWA
+// ======================
+
+if ("serviceWorker" in navigator) {
+
+    window.addEventListener("load", () => {
+
+        navigator.serviceWorker.register(
+            "service-worker.js"
+        );
+
+    });
+
+}
